@@ -1,61 +1,63 @@
 <?php
-    include("connection.php");
-    class HoSo{
-        public $ma;
-        public $hodem;
-        public $ten;
-        public $ngaysinh;
-        public $gioitinh;
-        public $sdt;
-        public $email;
-        public $trangthai;
-        public $giayto;
-        public $matkhau;
-        public $quyen;
+include("connection.php");
+class HoSo
+{
+    public $ma;
+    public $hodem;
+    public $ten;
+    public $ngaysinh;
+    public $gioitinh;
+    public $sdt;
+    public $email;
+    public $trangthai;
+    public $giayto;
 
-        
-        public function __construct($ma, $hd, $t, $ns, $gt, $sdt, $email, $tt, $g, $mk, $q){
-            $this->ma = $ma;
-            $this->hodem = $hd;
-            $this->ten = $t;
-            $this->ngaysinh = $ns;
-            $this->gioitinh = $gt;
-            $this->sdt = $sdt;
-            $this->email = $email;
-            $this->trangthai = $tt;
-            $this->giayto = $g;
-            $this->matkhau = $mk;
-            $this->quyen = $q;
-        }
-        public function __destruct(){
+
+    public function __construct($ma, $hd, $t, $ns, $gt, $sdt, $email, $tt, $g)
+    {
+        $this->ma = $ma;
+        $this->hodem = $hd;
+        $this->ten = $t;
+        $this->ngaysinh = $ns;
+        $this->gioitinh = $gt;
+        $this->sdt = $sdt;
+        $this->email = $email;
+        $this->trangthai = $tt;
+        $this->giayto = $g;
+    }
+    public function __destruct()
+    {
 
     }
 
-        public static function Add(HoSo $hoso){
-            $success=false;
-            $conn= DBConnection::Connect();
-            $stmt = $conn->prepare("CALL ThemHoSo(?,?,?,?,?,?,?,?,?,?,?)");
-            $stmt->bind_param("sssissssisi", $hoso->hodem, $hoso->ten, $hoso->ngaysinh, $hoso->gioitinh, $hoso->sdt, $hoso->email, $hoso->trangthai, $hoso->giayto, $hoso->ma, $hoso->matkhau, $hoso->quyen);
-            $success = $stmt->execute();
-            $stmt->close();
-            $conn->close();
-            return $success;
-        }
-        public static function Edit(HoSo $hoso){
-            //Update into...
-        }
-        
-        public static function Delete(string $mahoso){
-            $success=false;
-            $conn= DBConnection::Connect();
-            $sql="DELETE FROM tbhoso WHERE mahoso=?";
-            $stmt= $conn->prepare($sql);
-            $stmt->bind_param("s", $mahoso);
-            $success = $stmt->execute();
-            $stmt->close();
-            $conn->close();
-            return $success;            
-        }        
+    public static function Add(HoSo $hoso)
+    {
+        $success = false;
+        $conn = DBConnection::Connect();
+        $stmt = $conn->prepare("CALL ThemHoSo(?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("sssissssisi", $hoso->hodem, $hoso->ten, $hoso->ngaysinh, $hoso->gioitinh, $hoso->sdt, $hoso->email, $hoso->trangthai, $hoso->giayto, $hoso->ma);
+        $success = $stmt->execute();
+        $stmt->close();
+        $conn->close();
+        return $success;
+    }
+    public static function Edit(HoSo $hoso)
+    {
+        //Update into...
+    }
+
+    public static function Delete(string $mahoso)
+    {
+        $success = false;
+        $conn = DBConnection::Connect();
+        $sql = "DELETE FROM tbhoso WHERE mahoso=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $mahoso);
+        $success = $stmt->execute();
+        $stmt->close();
+        $conn->close();
+        return $success;
+    }
 
     public static function GetAll()
     {
