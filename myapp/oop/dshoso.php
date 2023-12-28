@@ -45,9 +45,9 @@
                     href="dskhachhang.php?action=2&makhach=<?php echo $item->makhach ?>">Delete</a>
             </td>
         </tr>
-    <?php
+        <?php
     }
 
-    echo "Đáaaaaa";
+    echo "Đá";
     ?>
 </table>
