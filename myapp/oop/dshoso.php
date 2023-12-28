@@ -3,8 +3,8 @@
 <table>
     <tr>
         <td>Ma khach</td>
-        <td>Ten khach</td>
-        <td>Tuoi</td>
+        <td>Ho dem</td>
+        <td>Ten</td>
         <td>Chuc nang</td>
     </tr>
     <?php
@@ -39,15 +39,14 @@
                 <?php echo $item->ten ?>
             </td>
             <td>
-                <a href="dskhachhang.php?action=1&mahoso=<?php echo $item->ma ?>">Edit</a>
+                <a href="dshoso.php?action=1&mahoso=<?php echo $item->ma ?>">Edit</a>
                 <span> | </span>
                 <a onclick="return confirm('Do you want to delete this customer?');"
-                    href="dskhachhang.php?action=2&mahoso=<?php echo $item->ma ?>">Delete</a>
+                    href="dshoso.php?action=2&mahoso=<?php echo $item->ma ?>">Delete</a>
             </td>
         </tr>
         <?php
     }
 
-    echo "Đáaaaaa";
     ?>
 </table>
