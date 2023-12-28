@@ -45,8 +45,9 @@
                     href="dskhachhang.php?action=2&mahoso=<?php echo $item->mahoso ?>">Delete</a>
             </td>
         </tr>
-    <?php
+        <?php
     }
 
+    echo "Đáaaaaa";
     ?>
 </table>
