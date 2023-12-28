@@ -27,10 +27,10 @@
     //Lấy danh sách khách hàng
     $ds = HoSo::GetAll();
     foreach ($ds as $item) {
-    ?>
+        ?>
         <tr>
             <td>
-                <?php echo $item->mahoso ?>
+                <?php echo $item->ma ?>
             </td>
             <td>
                 <?php echo $item->hodem ?>
@@ -39,10 +39,10 @@
                 <?php echo $item->ten ?>
             </td>
             <td>
-                <a href="dskhachhang.php?action=1&mahoso=<?php echo $item->mahoso ?>">Edit</a>
+                <a href="dskhachhang.php?action=1&mahoso=<?php echo $item->ma ?>">Edit</a>
                 <span> | </span>
                 <a onclick="return confirm('Do you want to delete this customer?');"
-                    href="dskhachhang.php?action=2&mahoso=<?php echo $item->mahoso ?>">Delete</a>
+                    href="dskhachhang.php?action=2&mahoso=<?php echo $item->ma ?>">Delete</a>
             </td>
         </tr>
         <?php
