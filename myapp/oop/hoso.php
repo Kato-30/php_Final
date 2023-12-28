@@ -10,11 +10,9 @@
         public $email;
         public $trangthai;
         public $giayto;
-        public $matkhau;
-        public $quyen;
 
         
-        public function __construct($ma, $hd, $t, $ns, $gt, $sdt, $email, $tt, $g, $mk, $q){
+        public function __construct($ma, $hd, $t, $ns, $gt, $sdt, $email, $tt, $g){
             $this->ma = $ma;
             $this->hodem = $hd;
             $this->ten = $t;
@@ -24,8 +22,6 @@
             $this->email = $email;
             $this->trangthai = $tt;
             $this->giayto = $g;
-            $this->matkhau = $mk;
-            $this->quyen = $q;
         }
         public function __destruct(){
 
@@ -34,8 +30,8 @@
         public static function Add(HoSo $hoso){
             $success=false;
             $conn= DBConnection::Connect();
-            $stmt = $conn->prepare("CALL ThemHoSo(?,?,?,?,?,?,?,?,?,?,?)");
-            $stmt->bind_param("sssissssisi", $hoso->hodem, $hoso->ten, $hoso->ngaysinh, $hoso->gioitinh, $hoso->sdt, $hoso->email, $hoso->trangthai, $hoso->giayto, $hoso->ma, $hoso->matkhau, $hoso->quyen);
+            $stmt = $conn->prepare("CALL ThemHoSo(?,?,?,?,?,?,?,?,?)");
+            $stmt->bind_param("sssissssi", $hoso->hodem, $hoso->ten, $hoso->ngaysinh, $hoso->gioitinh, $hoso->sdt, $hoso->email, $hoso->trangthai, $hoso->giayto, $hoso->ma);
             $success = $stmt->execute();
             $stmt->close();
             $conn->close();

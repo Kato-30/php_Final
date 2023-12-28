@@ -1,4 +1,4 @@
-<a href="themkhachhang.php">Them khach</a>
+<a href="">Them khach</a>
 <h2>Danh sach khach hang</h2>
 <table>
     <tr>
@@ -8,15 +8,15 @@
         <td>Chuc nang</td>
     </tr>
     <?php
-    include("khachhang.php");
+    include("hoso.php");
 
     // $kh = new KhachHang('kh09', 'Ănfwa', 20);
     $action = isset($_GET["action"]) ? $_GET["action"] : "0";
     //Xóa khách hàng nếu có yêu cầu
     if ($action == "2") {
-        $makhach = isset($_GET["makhach"]) ? $_GET["makhach"] : "";
-        if ($makhach != "") {
-            $success = HoSo::Delete($makhach);
+        $mahoso = isset($_GET["mahoso"]) ? $_GET["mahoso"] : "";
+        if ($mahoso != "") {
+            $success = HoSo::Delete($mahoso);
             if ($success) {
                 echo "<script> alert('Delete success!');</script>";
             } else {
@@ -27,27 +27,26 @@
     //Lấy danh sách khách hàng
     $ds = HoSo::GetAll();
     foreach ($ds as $item) {
-        ?>
+    ?>
         <tr>
             <td>
-                <?php echo $item->makhach ?>
+                <?php echo $item->mahoso ?>
             </td>
             <td>
-                <?php echo $item->tenkhach ?>
+                <?php echo $item->hodem ?>
             </td>
             <td>
-                <?php echo $item->tuoi ?>
+                <?php echo $item->ten ?>
             </td>
             <td>
-                <a href="dskhachhang.php?action=1&makhach=<?php echo $item->makhach ?>">Edit</a>
+                <a href="dskhachhang.php?action=1&mahoso=<?php echo $item->mahoso ?>">Edit</a>
                 <span> | </span>
                 <a onclick="return confirm('Do you want to delete this customer?');"
-                    href="dskhachhang.php?action=2&makhach=<?php echo $item->makhach ?>">Delete</a>
+                    href="dskhachhang.php?action=2&mahoso=<?php echo $item->mahoso ?>">Delete</a>
             </td>
         </tr>
     <?php
     }
 
-    echo "Đáaaaaa";
     ?>
 </table>
