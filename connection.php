@@ -7,7 +7,7 @@ class DBConnection
         $servername = "localhost:3306";
         $username = "root";
         $password = "";
-        $dbname = "dbquanlytuyensinh";
+        $dbname = "dbtuyensinh";
         // Khởi tạo kết nối
         $conn = new mysqli($servername, $username, $password, $dbname);
         // Kiểm tra kết nối

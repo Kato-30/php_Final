@@ -86,5 +86,62 @@ class HoSo
         $conn->close();
         return $HoSo;
     }
+
+    //Insert to tbdiemnghanhhoc
+    public static function AutoInsertScore()
+    {
+        $dsNganhHoc = array();
+        $conn = DBConnection::Connect();
+        $sql = "SELECT * FROM tbnganhhoc";
+        $result = $conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $dsNganhHoc[] = $row["manganh"];
+        }
+        $dstohop = array();
+        $sql = "SELECT * FROM tbtohop";
+        $result = $conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $dstohop[] = $row["matohop"];
+        }
+
+        foreach ($dsNganhHoc as $item) {
+            foreach ($dstohop as $key) {
+                $stmt = $conn->prepare("INSERT INTO `tbdiemxettuyen`(`manganh`, `matohop`, `diem`) VALUES (?,?,?)");
+                $diem = 26;
+                $stmt->bind_param("ssd", $item, $key, $diem);
+                $stmt->execute();
+            }
+        }
+
+        $conn->close();
+    }
 }
+
+class DiemNganhHoc
+{
+    public $manganh;
+    public $matohop;
+    public $diem;
+
+    public function __construct($setMaNganh, $setMaToHop, $setDiem)
+    {
+        $this->manganh = $setMaNganh;
+        $this->matohop = $setMaToHop;
+        $this->diem = $setDiem;
+    }
+
+    public static function GetAll($manganh)
+    {
+        $dsDiem = array();
+        $conn = DBConnection::Connect();
+        $sql = "SELECT * FROM tbdiemxettuyen WHERE manganh = '$manganh'";
+        $result = $conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $dsDiem[] = new DiemNganhHoc($row["manganh"], $row["matohop"], $row["diem"]);
+        }
+        $conn->close();
+        return $dsDiem;
+    }
+}
+
 ?>
