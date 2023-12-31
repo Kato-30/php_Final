@@ -142,6 +142,37 @@ class DiemNganhHoc
         $conn->close();
         return $dsDiem;
     }
+    public static function Delete($manganh, $matohop)
+    {
+        $conn = DBConnection::Connect();
+        $sql = "DELETE FROM `tbdiemxettuyen` WHERE manganh = ? And matohop = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss", $manganh, $matohop);
+        $success = $stmt->execute();
+        $stmt->close();
+        $conn->close();
+        return $success;
+    }
+    public static function Update($diem, $manganh, $matohop)
+    {
+        $conn = DBConnection::Connect();
+        $sql = "UPDATE `tbdiemxettuyen` SET `diem`= ? WHERE manganh = ? And matohop = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("dss", $diem, $manganh, $matohop);
+        $success = $stmt->execute();
+        $stmt->close();
+        $conn->close();
+        return $success;
+    }
+
+    public static function GetIdUpdate($id)
+    {
+        return $id;
+    }
+    public static function SetIdUpdate($manganh, $matohop)
+    {
+        ////////////////return $id;
+    }
 }
 
 ?>
